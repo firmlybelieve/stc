@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>登录页面</title>
+      <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    
+</head>
+<body>
+    <form action="/front/addlogin" name="loginfrom" accept-charset="utf-8" method="post">
+        <input type="hidden" id="t" name="token" class="inputstyle" />
+        <label class="label-tips" for="u">账号:</label>
+        <input type="text" id="u" name="username" class="inputstyle"/>
+        <div>
+            <label class="lable-tips" for="password">密码:</label>
+            <input type="password" id="password" name="password" class="inputstyle" />
+        </div>
+        <input type="submit" id="login" name="登录"/>
+        <a href="register.html" class="zcxy" target="_blank">注册</a>
+    </form>
+    	<script src="https://acstatic-dun.126.net/tool.min.js"></script>
+    
+    <script>
+  (function ($, undefined) {
+    var wmInstance = null;
+    // 初始化SDK，只需初始化一次
+    initWatchman({
+      productNumber: 'YD00000000007515',
+      onload: function (instance) {
+        wmInstance = instance;
+      }
+    });
+    var login = function (event) {
+      // 阻止表单默认提交
+      event.preventDefault();
+      if (wmInstance) {
+        wmInstance.getToken('3c0f9eb87ccc4240bcb80b0c8185626c', function (token) {
+          $('#t').val(token);
+          $('form').submit();
+        });
+      }
+    };
+    $('#login').on('click', login);
+  }(jQuery))
+  </script>
+</body>
+</html>
